@@ -5,6 +5,9 @@ from . import login_manager
 from datetime import datetime
 import pytz
 
+date_time=datetime.utcnow().replace(tzinfo=pytz.UTC)
+time_zone=date_time.astimezone(pytz.timezone('Africa/Nairobi'))
+
 
 class User (Usermixin,db.Model):
     __tablename__ = 'users'
@@ -37,7 +40,18 @@ class User (Usermixin,db.Model):
 
     def __repr__(self):
         return f"User('{self.username}','{self.email}','{self.pitch}')"
-    
+
+
+class Pitch(db.Model):
+    __tablename__='pitch'
+    id=db.Column(db.Integer,primary_key=True)
+    pitch=db.Column(db.String())
+    pitch_category=db.Column(db.String(20))
+    posted=db.Column(db.DateTime,default=time_zone)
+    upvotes=db.Column(db.Integer)
+    downvotes=db.Column(db.Integer)
+    comment=db.relationship('Comment',backref='pitch',lazy='dynamic')
+    user_id=db.Column(db.Integer,db.ForeignKey('users.id')) 
     
 
 class Comment(db.Model):
@@ -61,16 +75,5 @@ class Comment(db.Model):
         comment=Comment.query.filter_by(pitch_id=pitch_id).all()
         return comment
 
-date_time=datetime.utcnow().replace(tzinfo=pytz.UTC)
-time_zone=date_time.astimezone(pytz.timezone('Africa/Nairobi'))
 
-class Pitch(db.Model):
-    __tablename__='pitch'
-    id=db.Column(db.Integer,primary_key=True)
-    pitch=db.Column(db.String())
-    pitch_category=db.Column(db.String(20))
-    posted=db.Column(db.DateTime,default=time_zone)
-    upvotes=db.Column(db.Integer)
-    downvotes=db.Column(db.Integer)
-    comment=db.relationship('Comment',backref='pitch',lazy='dynamic')
-    user_id=db.Column(db.Integer,db.ForeignKey('users.id'))
+

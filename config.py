@@ -3,18 +3,20 @@ from flask_mail import Mail
 
 class Config:
     SECRET_KEY='Sqp1aHMA1U'
-    UPLOADED_PHOTOS_DEST =
-    MAIL_SERVER = 
-    MAIL_PORT = 
-    MAIL_USE_TLS = True
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://andy:Access@localhost/school'
     MAIL_USERNAME = os.environ.get("MAIL_USERNAME")
     MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://andy:Access@localhost/school'
+
+    UPLOADED_PHOTOS_DEST ="app/static/photos"
+    MAIL_SERVER = 'smtp.googlemail.com' 
+    MAIL_PORT = 587
+    MAIL_USE_TLS = True
+    
 
 class TestConfig(Config):
-    # SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:Mbuguack@localhost/watchlist_test'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://andy:Access@localhost/school'
 
-    pass
+    
 
 class ProdConfig(Config):
     '''
@@ -22,17 +24,16 @@ class ProdConfig(Config):
     
     '''
    
-    # SQLALCHEMY_DATABASE_URI = ""
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://andy:Access@localhost/school'
     
 
 
 
-Class TestConfig(config):
-    #SQLALCHEMY_DATABASE_URI = ''
+
 
 class DevConfig(Config):
   
-    #SQLALCHEMY_DATABASE_URI = ''
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://andy:Access@localhost/school'
     DEBUG = True
 
 config_options = {
