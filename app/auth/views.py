@@ -19,7 +19,7 @@ def register():
         db.session.add(user)
         db.session.commit()
         
-        mail_message("Welcome to Pitches hub","email/welcome_user",user.email,user=user)
+        mail_message("Your account has been succesfully Created. Proceed to login","email/welcome_user",user.email,user=user)
 
         return redirect(url_for('auth.login'))
     return render_template ('register.html')

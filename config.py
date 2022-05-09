@@ -1,9 +1,15 @@
 import os
-import secrets
 from flask_mail import Mail
 
 class Config:
-    SECRET_KEY = 'dhrddhfhfjmjgfhfh' 
+    SECRET_KEY='Sqp1aHMA1U'
+    UPLOADED_PHOTOS_DEST =
+    MAIL_SERVER = 
+    MAIL_PORT = 
+    MAIL_USE_TLS = True
+    MAIL_USERNAME = os.environ.get("MAIL_USERNAME")
+    MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://andy:Access@localhost/school'
 
 class TestConfig(Config):
     # SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:Mbuguack@localhost/watchlist_test'
@@ -13,24 +19,20 @@ class TestConfig(Config):
 class ProdConfig(Config):
     '''
     Production  configuration child class
-    Args:
-        Config: The parent configuration class with General configuration settings
+    
     '''
-    # SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://moringa:Mbuguack@localhost/watchlist'
-    # SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
-    pass
+   
+    # SQLALCHEMY_DATABASE_URI = ""
+    
 
 
 
-
+Class TestConfig(config):
+    #SQLALCHEMY_DATABASE_URI = ''
 
 class DevConfig(Config):
-    '''
-    Development  configuration child class
-    Args:
-        Config: The parent configuration class with General configuration settings
-    '''
-
+  
+    #SQLALCHEMY_DATABASE_URI = ''
     DEBUG = True
 
 config_options = {
