@@ -1,5 +1,10 @@
 {% extends 'base.html'%}
 
+{% block styles%}
+    {{super()}}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock%}
+
 {% block content %}
 <ul>
     {% for pitch in pitches.items%}
@@ -15,6 +20,11 @@
             <!--  -->
             <div class="card-footer text-muted">
                 <p class="card-text"><button>Posted On: {{pitch.posted.strftime('%Y-%m-%d')}}</button> &nbsp; <button>Likes: {{pitch.upvotes}}~<span></span>Dislikes: {{pitch.downvotes}}</button></p>
+                <div>
+                    <a href="{{url_for('main.comment',pname=pitch.id)}}"><i class="fa fa-comment" style="font-size:36px;color:blue" aria-hidden="true"></i></a> <span><span><a href="{{url_for('main.comment',pname=pitch.id)}}"><i class="fa fa-thumbs-up" style="font-size:36px;color:green" aria-hidden="true"></i>
+                    </a></span> <span><a href="{{url_for('main.comment',pname=pitch.id)}}"><i class="fa fa-thumbs-down" style="font-size:36px;color:red" aria-hidden="true"></i>
+                    </a></span></span>
+                </div>
             </div>
         </div>
     </li>
