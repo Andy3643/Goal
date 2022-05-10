@@ -1,0 +1,25 @@
+{% extends 'base.html'%}
+
+{% block content %}
+<ul>
+    {% for pitch in pitches.items%}
+    <li>
+        <div class="card text-center">
+            <div class="card-header">{{pitch.pitch_category}}</div>
+            <div class="card-body">
+            <h5 class="card-title"><a href="{{url_for('main.posted',username=pitch.user.username)}}">Posted By: {{pitch.user.username}}</a></h5>
+            <p class="card-text">{{pitch.pitch}}</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+            
+            <!--  -->
+            <div class="card-footer text-muted">
+                <p class="card-text"><button>Posted On: {{pitch.posted.strftime('%Y-%m-%d')}}</button> &nbsp; <button>Likes: {{pitch.upvotes}}~<span></span>Dislikes: {{pitch.downvotes}}</button></p>
+            </div>
+        </div>
+    </li>
+    {%endfor%} 
+</ul>
+    
+
+{% endblock %}
